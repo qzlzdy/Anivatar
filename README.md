@@ -1,8 +1,8 @@
-# Anicon
+# Anivatar
 
 毕业设计：**基于生成对抗网络的动漫头像生成软件开发**
 
-Graduation Project: **Anime Portrait Generator Based on Generative Adversarial Network Development**
+Graduation Project: **Generative Adversarial Network Based Anime Avatar Generator Development**
 
 ## Dataset
 
