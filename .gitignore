@@ -1,3 +1,10 @@
+# project core
 checkpoint/
 __pycache__/
 portrait/
+
+# project backend
+instance/
+
+# IDE
+.idea/
