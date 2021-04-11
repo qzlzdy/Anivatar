@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base.html' %}
+{% block body %}
+  <h1>Welcome to Anivatar</h1>
+  <p>
+    This is a generative adversarial network based anime avatar generator,
+    which was trained on Danbooru with Conditional StyleGAN model.
+    Click the "start" button below to start generating an anime avatar.
+  </p>
+  <form method="get" action="{{ url_for('labels.show') }}">
+    <button type="submit">click to start</button>
+  </form>
+{% endblock body %}

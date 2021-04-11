@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+  <h1>Select labels which you want to generate</h1>
+  <p>You can also select nothing and generate a random one</p>
+
+  <form method="post" action="{{ url_for('avatar.generate') }}">
+  {% for tag in tags %}
+    <input type="checkbox" name="labels" value="{{ tag }}"/>{{ tag }}<br/>
+  {% endfor %}
+    <label for="truncation">Truncation</label>
+    <input name="truncation" required/>
+    <button type="submit">generate avatar</button>
+  </form>
+{% endblock body %}

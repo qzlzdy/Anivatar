@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<title>{% block title %}{% endblock %} - Anivatar</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
-<nav>
-    <h1>Anivatar</h1>
-</nav>
-<section class="content">
-    <header>{% block header %}{% endblock %}</header>
-</section>
+<head>
+  <meta name="application-name" content="Anivatar"/>
+  <meta name="author" content="Qzlzdy"/>
+  <meta name="description" content="Generative Adversarial Network Based Anime Avatar Generator"/>
+  <meta name="keywords" content="GAN, anime, avatar, generate, cartoon, StyleGAN"/>
+  <title>Anivatar - Generative Adversarial Network Based Anime Avatar Generator</title>
+  <link ref="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"/>
+</head>
+<body>
+  {% block body %}{% endblock body %}
+</body>

@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>About</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base.html' %}
+{% block body %}
+  <h1>Anivatar</h1>
+  <h2>Author: Qzlzdy</h2>
+  <h2>University: <a href="https://www.hdu.edu.cn">Hangzhou Dianzi University</a></h2>
+  <h2>Email: yangtl@hdu.edu.cn</h2>
+  <h2>Source Code: <a href="https://github.com/qzlzdy/Anivatar">Anivatar</a></h2>
+  <form method="get" action="/">
+    <button type="submit">back to home page</button>
+  </form>
+{% endblock body %}

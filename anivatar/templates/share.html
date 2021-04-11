@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block body %}
+  <h1>Congratulations!</h1>
+  <p>You have generated an unique anime avatar. You can download the avatar here and share it to your friends.</p>
+  <form method="get" action="/">
+    <button type="submit">return to home page</button>
+  </form>
+  <a href="{{ url_for('about') }}">About</a>
+{% endblock body %}
