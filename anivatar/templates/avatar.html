@@ -5,7 +5,7 @@
     You can regenerate the avatar if you are not satisfy.
     Then you can edit the avatar after click the button below.
   </p>
-  <img src="{{ url_for('static', filename='tmp/{}.png'.format(latent)) }}" width="512" height="512"/>
+  <img src="{{ url_for('static', filename='tmp/{}.png'.format(user_id)) }}" width="512" height="512"/>
   <form method="get" action="{{ url_for('edit.show') }}">
     <button type="submit">edit the avatar</button>
   </form>
