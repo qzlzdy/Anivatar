@@ -8,9 +8,9 @@
     <input type="checkbox" name="labels" value="{{ tag }}"/>{{ tag }}<br/>
   {% endfor %}
     <label for="truncation">Truncation</label>
-    <input name="truncation" id="truncation" required/>
+    <input name="truncation" id="truncation" value="1" required/>
     <label for="truncation_mean">Truncation Mean</label>
-    <input name="truncation_mean" id="truncation_mean" required/>
+    <input name="truncation_mean" id="truncation_mean" value="4096" required/>
     <button type="submit">generate avatar</button>
   </form>
 {% endblock body %}

@@ -2,7 +2,26 @@
 {% block body %}
   <h1>Edit generated avatar</h1>
   <p>You can edit the avatar here. When you completed, click the button below</p>
-  <img src="{{ url_for('static', filename='tmp/{}.png'.format(latent)) }}" width="512" height="512"/>
+  <img src="{{ avatar_path }}" width="512" height="512"/>
+  <form method="post" action="{{ url_for('edit.shift') }}">
+    <label for="shift_x">x</label>
+    <input name="shift_x" id="shift_x" value="0"/>
+    <label for="shift_y">y</label>
+    <input name="shift_y" id="shift_y" value="0"/>
+    <button type="submit">shift</button>
+  </form>
+  <form method="post" action="{{ url_for('edit.shift_to') }}">
+    <label for="shift_to_x">x</label>
+    <input name="shift_x" id="shift_to_x" value="0"/>
+    <label for="shift_to_y">y</label>
+    <input name="shift_y" id="shift_to_y" value="0"/>
+    <button type="submit">shift to</button>
+  </form>
+  <form method="post" action="{{ url_for('edit.rotate') }}">
+    <label for="angle">angle</label>
+    <input name="angle" id="angle" value="0"/>
+    <button type="submit">rotate</button>
+  </form>
   <form method="get" action="{{ url_for('share.summary') }}">
     <button type="submit">continue</button>
   </form>
