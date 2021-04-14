@@ -1,13 +1,30 @@
 {% extends 'base.html' %}
 {% block body %}
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/zh_CN/sdk.js#xfbml=1&version=v10.0" nonce="Al7DCaEn"></script>
   <h1>Congratulations!</h1>
   <p>You have generated an unique anime avatar. You can download the avatar here and share it to your friends.</p>
   <img src="{{ avatar_path }}" width="512" height="512"/>
   <form method="get" action="{{ url_for('share.download') }}">
     <button type="submit">download</button>
   </form>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+    class="twitter-share-button"
+    data-text="I have generated an anime avatar by Anivatar."
+    data-url="localhost:5000"
+    data-show-count="false">Tweet</a>
+  <div class="fb-share-button"  data-href="http://localhost:5000" data-layout="button_count" data-size="small">
+    <a target="_blank"
+      href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A5000%2F&amp;src=sdkpreparse"
+      class="fb-xfbml-parse-ignore">分享</a>
+  </div>
   <form method="get" action="/">
     <button type="submit">return to home page</button>
   </form>
+  <a href="https://twitter.com/qzlzdy_yang?ref_src=twsrc%5Etfw"
+    class="twitter-follow-button"
+    data-show-count="false">Follow @qzlzdy_yang</a>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <a href="{{ url_for('about') }}">About</a>
 {% endblock body %}

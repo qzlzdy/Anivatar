@@ -1,33 +1,30 @@
 import cv2 as cv
+import json
 import numpy as np
 
 from flask import Blueprint, current_app, g, redirect, render_template, request, session, url_for
 
 bp = Blueprint('edit', __name__, url_prefix='/edit')
+# TODO 亮度 对比度 饱和度 锐化 浮雕 雕刻 油漆
 
 
-@bp.before_request
-def load_avatar_path():
-    stem = session['session_id']
-    g.original_path = url_for('static', filename='portrait/{}-0-0-0-0.png'.format(stem))
+@bp.after_request
+def debug_print(f):
+    # session_id, zoom_factory, shift_x, shift_y, rotate_angle, filter
+    output = [session['session_id'], 1, 0, 0, 0, '']
 
     zoom_arg = session.get('zoom_arg')
-    if zoom_arg is None:
-        stem += '-0'
-    else:
-        stem += f'-{zoom_arg}'
+    if zoom_arg is not None:
+        output[1] = zoom_arg
 
     shift_arg = session.get('shift_arg')
-    if shift_arg is None:
-        stem += '-0-0'
-    else:
-        stem += f'-{shift_arg[0]}-{shift_arg[1]}'
+    if shift_arg is not None:
+        output[2] = shift_arg[0]
+        output[3] = shift_arg[1]
 
     rotate_arg = session.get('rotate_arg')
-    if rotate_arg is None:
-        stem += '-0'
-    else:
-        stem += f'-{rotate_arg}'
+    if rotate_arg is not None:
+        output[4] = rotate_arg
 
     filter_arg = session.get('filter')
     if filter_arg is None:
@@ -35,71 +32,49 @@ def load_avatar_path():
     elif filter_arg == 'null':
         pass
     elif filter_arg == 'sketch':
-        stem += '-s'
+        output[5] = 's'
     elif filter_arg == 'nostalgia':
-        stem += '-n'
+        output[5] = 'n'
     elif filter_arg == 'halo':
-        stem += '-h'
+        output[5] = 'h'
     elif filter_arg == 'rising':
-        stem += '-r'
+        output[5] = 'r'
 
-    avatar_path = url_for('static', filename='portrait/{}.png'.format(stem))
+    print('[DEBUG]', json.dumps(output))
+    return f
+
+
+@bp.before_request
+def load_avatar_path():
+    # session_id, shift_x, shift_y, rotate_angle, filter
+    output = [session['session_id'], 0, 0, 0, '']
+
+    shift_arg = session.get('shift_arg')
+    if shift_arg is not None:
+        output[2] = shift_arg[0]
+        output[3] = shift_arg[1]
+
+    rotate_arg = session.get('rotate_arg')
+    if rotate_arg is not None:
+        output[4] = rotate_arg
+
+    filter_arg = session.get('filter')
+    if filter_arg is None:
+        pass
+    elif filter_arg == 'null':
+        pass
+    elif filter_arg == 'sketch':
+        output[5] = 's'
+    elif filter_arg == 'nostalgia':
+        output[5] = 'n'
+    elif filter_arg == 'halo':
+        output[5] = 'h'
+    elif filter_arg == 'rising':
+        output[5] = 'r'
+
+    filename = hash(json.dumps(output))
+    avatar_path = url_for('static', filename='portrait/{}.png'.format(filename))
     g.avatar_path = avatar_path
-
-
-@bp.route('/zoom', methods=('POST',))
-def zoom():
-    factor = float(request.form['factor'])
-
-    img_path = current_app.config['ROOT_PATH'] + g.avatar_path
-    img = cv.imread(img_path)
-    rows, cols = img.shape[:-1]
-    pts1 = np.float32([[256, 256], [0, 0], [512, 0]])
-    pts2 = np.float32([
-        [256, 256],
-        [256 * (1 - factor), 256 * (1 - factor)],
-        [256 * (1 + factor), 256 * (1 - factor)]
-    ])
-    M = cv.getAffineTransform(pts1, pts2)
-    img = cv.warpAffine(img, M, (cols, rows))
-
-    curr_scale = session.get('zoom_arg')
-    if curr_scale is None:
-        curr_scale = 1.0
-    session['zoom_arg'] = curr_scale * factor
-
-    load_avatar_path()
-    img_path = current_app.config['ROOT_PATH'] + g.avatar_path
-    cv.imwrite(img_path, img)
-
-    return redirect(url_for('.show'))
-
-
-@bp.route('/zoom-to', methods=('POST',))
-def zoom_to():
-    factor = float(request.form['factor'])
-
-    img_path = current_app.config['ROOT_PATH'] + g.original_path
-    img = cv.imread(img_path)
-    rows, cols = img.shape[:-1]
-    pts1 = np.float32([[256, 256], [0, 0], [512, 0]])
-    pts2 = np.float32([
-        [256, 256],
-        [256 * (1 - factor), 256 * (1 - factor)],
-        [256 * (1 + factor), 256 * (1 - factor)]
-    ])
-    M = cv.getAffineTransform(pts1, pts2)
-    img = cv.warpAffine(img, M, (cols, rows))
-
-    session['zoom_arg'] = factor
-
-    load_avatar_path()
-    img_path = current_app.config['ROOT_PATH'] + g.avatar_path
-    cv.imwrite(img_path, img)
-
-    return redirect(url_for('.show'))
-
-    return img
 
 
 @bp.route('/shift', methods=('POST',))
@@ -127,26 +102,6 @@ def shift():
     return redirect(url_for('.show'))
 
 
-@bp.route('/shift-to', methods=('POST',))
-def shift_to():
-    shift_x = int(request.form['shift_x'])
-    shift_y = int(request.form['shift_y'])
-
-    img_path = current_app.config['ROOT_PATH'] + g.original_path
-    img = cv.imread(img_path)
-    rows, cols = img.shape[:-1]
-    M = np.float32([[1, 0, shift_x], [0, 1, shift_y]])
-    dst = cv.warpAffine(img, M, (cols, rows))
-
-    session['shift_arg'] = (shift_x, shift_y)
-
-    load_avatar_path()
-    img_path = current_app.config['ROOT_PATH'] + g.avatar_path
-    cv.imwrite(img_path, dst)
-
-    return redirect(url_for('.show'))
-
-
 @bp.route('/rotate', methods=('POST',))
 def rotate():
     angle = int(request.form['angle'])
@@ -163,25 +118,6 @@ def rotate():
     else:
         curr_angle = rotate_arg
     session['rotate_arg'] = curr_angle + angle
-
-    load_avatar_path()
-    img_path = current_app.config['ROOT_PATH'] + g.avatar_path
-    cv.imwrite(img_path, dst)
-
-    return redirect(url_for('.show'))
-
-
-@bp.route('/rotate-to', methods=('POST',))
-def rotate_to():
-    angle = int(request.form['angle'])
-
-    img_path = current_app.config['ROOT_PATH'] + g.original_path
-    img = cv.imread(img_path)
-    rows, cols = img.shape[:-1]
-    M = cv.getRotationMatrix2D(((rows - 1) / 2.0, (cols - 1) / 2.0), angle, 1)
-    dst = cv.warpAffine(img, M, (cols, rows))
-
-    session['rotate_arg'] = angle
 
     load_avatar_path()
     img_path = current_app.config['ROOT_PATH'] + g.avatar_path
