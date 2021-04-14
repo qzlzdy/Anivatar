@@ -16,5 +16,5 @@ if __name__ == '__main__':
 
     root = os.path.dirname(__file__)
     src = f'{root}/../static/portrait/example.png'
-    dst = f'{root}/../static/portrait/{args.output}-0-0-0.png'
+    dst = f'{root}/../static/portrait/{args.output}-0-0-0-0.png'
     shutil.copy(src, dst)

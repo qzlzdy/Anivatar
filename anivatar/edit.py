@@ -9,7 +9,13 @@ bp = Blueprint('edit', __name__, url_prefix='/edit')
 @bp.before_request
 def load_avatar_path():
     stem = session['session_id']
-    g.original_path = url_for('static', filename='portrait/{}-0-0-0.png'.format(stem))
+    g.original_path = url_for('static', filename='portrait/{}-0-0-0-0.png'.format(stem))
+
+    zoom_arg = session.get('zoom_arg')
+    if zoom_arg is None:
+        stem += '-0'
+    else:
+        stem += f'-{zoom_arg}'
 
     shift_arg = session.get('shift_arg')
     if shift_arg is None:
@@ -39,6 +45,61 @@ def load_avatar_path():
 
     avatar_path = url_for('static', filename='portrait/{}.png'.format(stem))
     g.avatar_path = avatar_path
+
+
+@bp.route('/zoom', methods=('POST',))
+def zoom():
+    factor = float(request.form['factor'])
+
+    img_path = current_app.config['ROOT_PATH'] + g.avatar_path
+    img = cv.imread(img_path)
+    rows, cols = img.shape[:-1]
+    pts1 = np.float32([[256, 256], [0, 0], [512, 0]])
+    pts2 = np.float32([
+        [256, 256],
+        [256 * (1 - factor), 256 * (1 - factor)],
+        [256 * (1 + factor), 256 * (1 - factor)]
+    ])
+    M = cv.getAffineTransform(pts1, pts2)
+    img = cv.warpAffine(img, M, (cols, rows))
+
+    curr_scale = session.get('zoom_arg')
+    if curr_scale is None:
+        curr_scale = 1.0
+    session['zoom_arg'] = curr_scale * factor
+
+    load_avatar_path()
+    img_path = current_app.config['ROOT_PATH'] + g.avatar_path
+    cv.imwrite(img_path, img)
+
+    return redirect(url_for('.show'))
+
+
+@bp.route('/zoom-to', methods=('POST',))
+def zoom_to():
+    factor = float(request.form['factor'])
+
+    img_path = current_app.config['ROOT_PATH'] + g.original_path
+    img = cv.imread(img_path)
+    rows, cols = img.shape[:-1]
+    pts1 = np.float32([[256, 256], [0, 0], [512, 0]])
+    pts2 = np.float32([
+        [256, 256],
+        [256 * (1 - factor), 256 * (1 - factor)],
+        [256 * (1 + factor), 256 * (1 - factor)]
+    ])
+    M = cv.getAffineTransform(pts1, pts2)
+    img = cv.warpAffine(img, M, (cols, rows))
+
+    session['zoom_arg'] = factor
+
+    load_avatar_path()
+    img_path = current_app.config['ROOT_PATH'] + g.avatar_path
+    cv.imwrite(img_path, img)
+
+    return redirect(url_for('.show'))
+
+    return img
 
 
 @bp.route('/shift', methods=('POST',))

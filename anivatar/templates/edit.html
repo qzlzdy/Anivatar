@@ -3,6 +3,16 @@
   <h1>Edit generated avatar</h1>
   <p>You can edit the avatar here. When you completed, click the button below</p>
   <img src="{{ avatar_path }}" width="512" height="512"/>
+  <form method="post" action="{{ url_for('edit.zoom') }}">
+    <label for="factor">factor</label>
+    <input name="factor" id="factor" value="1"/>
+    <button type="submit">zoom</button>
+  </form>
+  <form method="post" action="{{ url_for('edit.zoom_to') }}">
+    <label for="to_factor">factor</label>
+    <input name="factor" id="to_factor" value="1"/>
+    <button type="submit">zoom to</button>
+  </form>
   <form method="post" action="{{ url_for('edit.shift') }}">
     <label for="shift_x">x</label>
     <input name="shift_x" id="shift_x" value="0"/>

@@ -19,5 +19,5 @@ def generate():
         cmd += f' --truncation_mean {truncation_mean}'
     cmd += f' --output {session["session_id"]}'
     os.system(cmd)
-    avatar_path = url_for('static', filename='portrait/{}-0-0-0.png'.format(session['session_id']))
+    avatar_path = url_for('static', filename='portrait/{}-0-0-0-0.png'.format(session['session_id']))
     return render_template('avatar.html', avatar_path=avatar_path)
