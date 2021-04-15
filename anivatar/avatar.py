@@ -34,8 +34,8 @@ def generate():
         args.append('--truncation_mean')
         args.append(str(truncation_mean))
     args.append('--output')
-    # session_id, shift_x, shift_y, rotate_angle, filter
-    output = [session['session_id'], 0, 0, 0, '']
+    # session_id, shift_x, shift_y, rotate_angle, saturation, contrast, filter
+    output = [session['session_id'], 0, 0, 0, 0, 10, '']
     output = hash(json.dumps(output))
     args.append(str(output))
     subprocess.run(args)
