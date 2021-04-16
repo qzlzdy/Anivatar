@@ -3,14 +3,47 @@
   <h1>Select labels which you want to generate</h1>
   <p>You can also select nothing and generate a random one</p>
 
-  <form method="post" action="{{ url_for('avatar.generate') }}">
-  {% for tag in tags %}
-    <input type="checkbox" name="labels" value="{{ tag }}"/>{{ tag }}<br/>
-  {% endfor %}
-    <label for="truncation">Truncation</label>
-    <input name="truncation" id="truncation" value="1" required/>
-    <label for="truncation_mean">Truncation Mean</label>
-    <input name="truncation_mean" id="truncation_mean" value="4096" required/>
-    <button type="submit">generate avatar</button>
-  </form>
+  <div class="anivatar">
+    <form method="post" action="{{ url_for('avatar.generate') }}">
+      <label>Labels</label>
+      <div class="row">
+        <div class="column">
+          <input type="checkbox" name="labels" value="animal_ears"/>animal_ears<br/>
+          <input type="checkbox" name="labels" value="bangs"/>bangs<br/>
+          <input type="checkbox" name="labels" value="black_hair"/>black_hair<br/>
+          <input type="checkbox" name="labels" value="blonde_hair"/>blonde_hair<br/>
+          <input type="checkbox" name="labels" value="blue_eyes"/>blue_eyes<br/>
+          <input type="checkbox" name="labels" value="blue_hair"/>blue_hair<br/>
+        </div>
+        <div class="column">
+          <input type="checkbox" name="labels" value="blush"/>blush<br/>
+          <input type="checkbox" name="labels" value="brown_eyes"/>brown_eyes<br/>
+          <input type="checkbox" name="labels" value="brown_hair"/>brown_hair<br/>
+          <input type="checkbox" name="labels" value="green_eyes"/>green_eyes<br/>
+          <input type="checkbox" name="labels" value="green_hair"/>green_hair<br/>
+          <input type="checkbox" name="labels" value="hair_ornament"/>hair_ornament<br/>
+        </div>
+        <div class="column">
+          <input type="checkbox" name="labels" value="hat"/>hat<br/>
+          <input type="checkbox" name="labels" value="open_mouth"/>open_mouth<br/>
+          <input type="checkbox" name="labels" value="pink_hair"/>pink_hair<br/>
+          <input type="checkbox" name="labels" value="purple_eyes"/>purple_eyes<br/>
+          <input type="checkbox" name="labels" value="purple_hair"/>purple_hair<br/>
+          <input type="checkbox" name="labels" value="red_eyes"/>red_eyes<br/>
+        </div>
+        <div class="column">
+          <input type="checkbox" name="labels" value="ribbon"/>ribbon<br/>
+          <input type="checkbox" name="labels" value="silver_hair"/>silver_hair<br/>
+          <input type="checkbox" name="labels" value="smile"/>smile<br/>
+          <input type="checkbox" name="labels" value="twintails"/>twintails<br/>
+          <input type="checkbox" name="labels" value="yellow_eyes"/>yellow_eyes<br/>
+        </div>
+      </div>
+        <label for="truncation">Truncation</label>
+        <input type="text" name="truncation" id="truncation" value="1" required/>
+        <label for="truncation_mean">Truncation Mean</label>
+        <input type="text" name="truncation_mean" id="truncation_mean" value="4096" required/>
+        <button type="submit">generate avatar</button>
+    </form>
+  </div>
 {% endblock body %}

@@ -6,9 +6,28 @@
     <meta name="description" content="Generative Adversarial Network Based Anime Avatar Generator"/>
     <meta name="keywords" content="GAN, anime, avatar, generate, cartoon, StyleGAN"/>
     <title>Anivatar - Generative Adversarial Network Based Anime Avatar Generator</title>
-    <link ref="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
   </head>
   <body>
-    {% block body %}{% endblock body %}
+    <div class="row">
+      <div class="side"></div>
+      <div class="middle">
+        <div class="header">
+          <h1>Anivatar</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a class="active" href="/">Home Page</a></li>
+            <li style="float:right"><a href="{{ url_for('about') }}">About</a></li>
+          </ul>
+        </nav>
+        {% block body %}{% endblock body %}
+      </div>
+      <div class="side"></div>
+    </div>
+    <div class="footer">
+      <p>Made by Tianlun Yang, HDU</p>
+    </div>
   </body>
 </html>

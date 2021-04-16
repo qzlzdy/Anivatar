@@ -5,13 +5,12 @@ import numpy as np
 from flask import Blueprint, current_app, g, redirect, render_template, request, session, url_for
 
 bp = Blueprint('edit', __name__, url_prefix='/edit')
-# TODO 亮度 饱和度 锐化
 
 
 @bp.before_request
 def load_avatar_path():
-    # session_id, shift_x, shift_y, rotate_angle, saturation, contrast, filter
-    output = [session['session_id'], 0, 0, 0, 0, 10, '']
+    # session_id, shift_x, shift_y, rotate_angle, lightness, saturation, contrast, filter
+    output = [session['session_id'], 0, 0, 0, 0, 0, 10, '']
 
     shift_arg = session.get('shift_arg')
     if shift_arg is not None:
@@ -22,13 +21,17 @@ def load_avatar_path():
     if rotate_arg is not None:
         output[3] = rotate_arg
 
+    lightness_arg = session.get('lightness_arg')
+    if lightness_arg is not None:
+        output[4] = lightness_arg
+
     saturation_arg = session.get('saturation_arg')
     if saturation_arg is not None:
-        output[4] = saturation_arg
+        output[5] = saturation_arg
 
     contrast_arg = session.get('contrast_arg')
     if contrast_arg is not None:
-        output[5] = contrast_arg
+        output[6] = contrast_arg
 
     filter_arg = session.get('filter')
     if filter_arg is None:
@@ -36,19 +39,19 @@ def load_avatar_path():
     elif filter_arg == 'null':
         pass
     elif filter_arg == 'sketch':
-        output[6] = 's'
+        output[7] = 's'
     elif filter_arg == 'nostalgia':
-        output[6] = 'n'
+        output[7] = 'n'
     elif filter_arg == 'halo':
-        output[6] = 'h'
+        output[7] = 'h'
     elif filter_arg == 'rising':
-        output[6] = 'r'
+        output[7] = 'r'
     elif filter_arg == 'relief':
-        output[6] = 'c'
+        output[7] = 'c'
     elif filter_arg == 'engraving':
-        output[6] = 'e'
+        output[7] = 'e'
     elif filter_arg == 'glass':
-        output[6] = 'g'
+        output[7] = 'g'
 
     filename = hash(json.dumps(output))
     avatar_path = url_for('static', filename='portrait/{}.png'.format(filename))
@@ -102,18 +105,45 @@ def rotate():
     return redirect(url_for('.show'))
 
 
-@bp.route('/saturation')
+@bp.route('/lightness', methods=('POST',))
+def lightness():
+    lightness_value = int(request.form['lightness'])
+
+    img_path = current_app.config['ROOT_PATH'] + g.avatar_path
+    img = cv.imread(img_path)
+    img = img.astype('float32')
+    img /= 255.0
+    img = cv.cvtColor(img, cv.COLOR_BGR2HLS)
+    img[:, :, 1] = (1.0 + lightness_value / 100.0) * img[:, :, 1]
+    img[:, :, 1][img[:, :, 1] > 1] = 1
+    img = cv.cvtColor(img, cv.COLOR_HLS2BGR)
+    img *= 255
+
+    lightness_arg = session.get('lightness_arg')
+    if lightness_arg is None:
+        lightness_arg = 0
+    session['lightness_arg'] = lightness_arg + lightness_value
+
+    load_avatar_path()
+    img_path = current_app.config['ROOT_PATH'] + g.avatar_path
+    cv.imwrite(img_path, img)
+
+    return redirect(url_for('.show'))
+
+
+@bp.route('/saturation', methods=('POST',))
 def saturation():
     saturation_value = int(request.form['saturation'])
 
     img_path = current_app.config['ROOT_PATH'] + g.avatar_path
     img = cv.imread(img_path)
-    img = img.astype(np.float32)
+    img = img.astype('float32')
     img /= 255.0
     img = cv.cvtColor(img, cv.COLOR_BGR2HLS)
     img[:, :, 2] = (1.0 + saturation_value / 100.0) * img[:, :, 2]
     img[:, :, 2][img[:, :, 2] > 1] = 1
     img = cv.cvtColor(img, cv.COLOR_HLS2BGR)
+    img *= 255
 
     saturation_arg = session.get('saturation_arg')
     if saturation_arg is None:

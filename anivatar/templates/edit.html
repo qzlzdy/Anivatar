@@ -2,41 +2,58 @@
 {% block body %}
   <h1>Edit generated avatar</h1>
   <p>You can edit the avatar here. When you completed, click the button below</p>
-  <img src="{{ avatar_path }}" width="512" height="512"/>
-  <form method="post" action="{{ url_for('edit.shift') }}">
-    <label for="shift_x">x</label>
-    <input name="shift_x" id="shift_x" value="0"/>
-    <label for="shift_y">y</label>
-    <input name="shift_y" id="shift_y" value="0"/>
-    <button type="submit">shift</button>
-  </form>
-  <form method="post" action="{{ url_for('edit.rotate') }}">
-    <label for="angle">angle</label>
-    <input name="angle" id="angle" value="0"/>
-    <button type="submit">rotate</button>
-  </form>
-  <form method="post" action="{{ url_for('edit.saturation') }}">
-    <label for="saturation">saturation</label>
-    <input name="saturation" id="saturation" value="0"/>
-    <button type="submit">adjust saturation</button>
-  </form>
-  <form method="post" action="{{ url_for('edit.contrast') }}">
-    <label for="contrast">contrast</label>
-    <input name="contrast" id="contrast" value="10"/>
-    <button type="submit">adjust contrast</button>
-  </form>
-  <form method="post" action="{{ url_for('edit.filters') }}">
-    <input type="radio" name="filter" value="null" checked="checked"/>no filter<br/>
-    <input type="radio" name="filter" value="sketch"/>sketch<br/>
-    <input type="radio" name="filter" value="nostalgia"/>nostalgia<br/>
-    <input type="radio" name="filter" value="halo"/>halo<br/>
-    <input type="radio" name="filter" value="rising"/>the year of the rising sun<br/>
-    <input type="radio" name="filter" value="relief"/>relief sculpture<br/>
-    <input type="radio" name="filter" value="engraving"/>engraving<br/>
-    <input type="radio" name="filter" value="glass"/>gross glass<br/>
-    <button type="submit">select filter</button>
-  </form>
-  <form method="get" action="{{ url_for('share.summary') }}">
-    <button type="submit">continue</button>
-  </form>
+  <img src="{{ avatar_path }}" width="512" height="512"/><br/><br/>
+  <div class="anivatar">
+    <form method="post" action="{{ url_for('edit.shift') }}">
+      <label for="shift_x">x</label>
+      <input type="text" name="shift_x" id="shift_x" value="0"/>
+      <label for="shift_y">y</label>
+      <input type="text" name="shift_y" id="shift_y" value="0"/>
+      <button type="submit">shift</button>
+    </form>
+    <form method="post" action="{{ url_for('edit.rotate') }}">
+      <label for="angle">angle</label>
+      <input type="text" name="angle" id="angle" value="0"/>
+      <button type="submit">rotate</button>
+    </form>
+    <form method="post" action="{{ url_for('edit.lightness') }}">
+      <label for="lightness">lightness</label>
+      <input type="text" name="lightness" id="lightness" value="0"/>
+      <button type="submit">adjust lightness</button>
+    </form>
+    <form method="post" action="{{ url_for('edit.saturation') }}">
+      <label for="saturation">saturation</label>
+      <input type="text" name="saturation" id="saturation" value="0"/>
+      <button type="submit">adjust saturation</button>
+    </form>
+    <form method="post" action="{{ url_for('edit.contrast') }}">
+      <label for="contrast">contrast</label>
+      <input type="text" name="contrast" id="contrast" value="10"/>
+      <button type="submit">adjust contrast</button>
+    </form>
+    <form method="post" action="{{ url_for('edit.filters') }}">
+      <div class="row">
+        <div class="column">
+          <input type="radio" name="filter" value="null" checked="checked"/>no filter<br/>
+          <input type="radio" name="filter" value="sketch"/>sketch<br/>
+        </div>
+        <div class="column">
+          <input type="radio" name="filter" value="nostalgia"/>nostalgia<br/>
+          <input type="radio" name="filter" value="halo"/>halo<br/>
+        </div>
+        <div class="column">
+          <input type="radio" name="filter" value="rising"/>the year of the rising sun<br/>
+          <input type="radio" name="filter" value="relief"/>relief sculpture<br/>
+        </div>
+        <div class="column">
+          <input type="radio" name="filter" value="engraving"/>engraving<br/>
+          <input type="radio" name="filter" value="glass"/>gross glass<br/>
+        </div>
+      </div>
+      <button type="submit">select filter</button>
+    </form>
+    <form method="get" action="{{ url_for('share.summary') }}">
+      <button type="submit">continue</button>
+    </form>
+  </div>
 {% endblock body %}
