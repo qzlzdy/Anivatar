@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block body %}
+  {% for img in images %}
+    <div class="responsive">
+      <div class="img">
+        <a target="_blank" href="{{ img['link'] }}">
+          <img src="{{ img['link'] }}" width="512" height="512"/>
+        </a>
+        <div class="desc">{{ img['desc'] }}</div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock body %}

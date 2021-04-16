@@ -1,14 +1,14 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        # ROOT_PATH='/home/qzlzdy/Python/Anivatar/anivatar/'
-        ROOT_PATH='/home/tlyang/gokurakujyoudo/src/Anivatar/anivatar/'
+        ROOT_PATH='/home/qzlzdy/Python/Anivatar/anivatar/'
+        # ROOT_PATH='/home/tlyang/gokurakujyoudo/src/Anivatar/anivatar/'
     )
 
     if test_config is not None:
@@ -26,6 +26,18 @@ def create_app(test_config=None):
     @app.route('/about')
     def about():
         return render_template('about.html')
+
+    @app.route('/gallery')
+    def gallery():
+        images = []
+        record_path = app.config['ROOT_PATH'] + url_for('static', filename='record.txt')
+        with open(record_path, 'r') as f:
+            for desc in f:
+                images.append({
+                    'link': url_for('static', filename='portrait/{}.png'.format(desc)),
+                    'desc': desc
+                })
+        return render_template('gallery.html', images=images)
 
     from . import labels, avatar, edit, share
     app.register_blueprint(labels.bp)

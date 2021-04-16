@@ -52,6 +52,12 @@
       </div>
       <button type="submit">select filter</button>
     </form>
+    <form method="post" action="{{ url_for('edit.vertical') }}">
+      <button type="submit">vertical flip</button>
+    </form>
+    <form method="post" action="{{ url_for('edit.horizontal') }}">
+      <button type="submit">horizontal flip</button>
+    </form>
     <form method="get" action="{{ url_for('share.summary') }}">
       <button type="submit">continue</button>
     </form>

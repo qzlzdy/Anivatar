@@ -19,15 +19,16 @@
         <nav>
           <ul>
             <li><a class="active" href="/">Home Page</a></li>
+            <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
             <li style="float:right"><a href="{{ url_for('about') }}">About</a></li>
           </ul>
         </nav>
         {% block body %}{% endblock body %}
+        <div class="footer">
+          <p>Made by Tianlun Yang, HDU</p>
+        </div>
       </div>
       <div class="side"></div>
-    </div>
-    <div class="footer">
-      <p>Made by Tianlun Yang, HDU</p>
     </div>
   </body>
 </html>

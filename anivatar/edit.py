@@ -9,8 +9,8 @@ bp = Blueprint('edit', __name__, url_prefix='/edit')
 
 @bp.before_request
 def load_avatar_path():
-    # session_id, shift_x, shift_y, rotate_angle, lightness, saturation, contrast, filter
-    output = [session['session_id'], 0, 0, 0, 0, 0, 10, '']
+    # session_id, shift_x, shift_y, rotate_angle, lightness, saturation, contrast, filter, vertical, horizontal
+    output = [session['session_id'], 0, 0, 0, 0, 0, 10, '', False, False]
 
     shift_arg = session.get('shift_arg')
     if shift_arg is not None:
@@ -52,6 +52,14 @@ def load_avatar_path():
         output[7] = 'e'
     elif filter_arg == 'glass':
         output[7] = 'g'
+
+    vertical_flag = session.get('vertical_flag')
+    if vertical_flag is not None:
+        output[8] = vertical_flag
+
+    horizontal_flag = session.get('horizontal_flag')
+    if horizontal_flag is not None:
+        output[9] = horizontal_flag
 
     filename = hash(json.dumps(output))
     avatar_path = url_for('static', filename='portrait/{}.png'.format(filename))
@@ -309,6 +317,42 @@ def filters():
         img = cv.imread(img_path)
 
     session['filter'] = avatar_filter
+
+    load_avatar_path()
+    img_path = current_app.config['ROOT_PATH'] + g.avatar_path
+    cv.imwrite(img_path, img)
+
+    return redirect(url_for('.show'))
+
+
+@bp.route('/vertical', methods=('POST',))
+def vertical():
+    img_path = current_app.config['ROOT_PATH'] + g.avatar_path
+    img = cv.imread(img_path)
+    img = cv.flip(img, 0)
+
+    vertical_flag = session.get('vertical_flag')
+    if vertical_flag is None:
+        vertical_flag = False
+    session['vertical_flag'] = not vertical_flag
+
+    load_avatar_path()
+    img_path = current_app.config['ROOT_PATH'] + g.avatar_path
+    cv.imwrite(img_path, img)
+
+    return redirect(url_for('.show'))
+
+
+@bp.route('/horizontal', methods=('POST',))
+def horizontal():
+    img_path = current_app.config['ROOT_PATH'] + g.avatar_path
+    img = cv.imread(img_path)
+    img = cv.flip(img, 1)
+
+    horizontal_flag = session.get('horizontal_flag')
+    if horizontal_flag is None:
+        horizontal_flag = False
+    session['horizontal_flag'] = not horizontal_flag
 
     load_avatar_path()
     img_path = current_app.config['ROOT_PATH'] + g.avatar_path
