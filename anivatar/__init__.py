@@ -1,3 +1,4 @@
+import cv2 as cv
 import os
 
 from flask import Flask, render_template, url_for
@@ -33,9 +34,15 @@ def create_app(test_config=None):
         record_path = app.config['ROOT_PATH'] + url_for('static', filename='record.txt')
         with open(record_path, 'r') as f:
             for desc in f:
+                link_path = url_for('static', filename='portrait/{}.png'.format(desc[:-1]))
+                pre_path = url_for('static', filename='portrait/pre{}.png'.format(desc[:-1]))
+                img = cv.imread(app.config['ROOT_PATH'] + link_path)
+                img = cv.resize(img, (128, 128))
+                cv.imwrite(app.config['ROOT_PATH'] + pre_path, img)
                 images.append({
-                    'link': url_for('static', filename='portrait/{}.png'.format(desc)),
-                    'desc': desc
+                    'pre': pre_path,
+                    'link': link_path,
+                    'desc': desc[:10] + '...' if len(desc) > 10 else desc
                 })
         return render_template('gallery.html', images=images)
 

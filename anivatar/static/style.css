@@ -108,7 +108,7 @@ div.img {
   margin: 5px;
   border: 1px solid #ccc;
   float: left;
-  width: 512px;
+  width: 128px;
 }
 div.img:hover {
   border: 1px solid #777;
