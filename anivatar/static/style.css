@@ -47,7 +47,7 @@ li a:hover{
 .active {
   background-color: #4caf50;
 }
-input[type=text] {
+input[type=number] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;

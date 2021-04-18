@@ -40,9 +40,9 @@
         </div>
       </div>
         <label for="truncation">Truncation</label>
-        <input type="text" name="truncation" id="truncation" value="1" required/>
+        <input type="number" name="truncation" id="truncation" min="1" value="1" required/>
         <label for="truncation_mean">Truncation Mean</label>
-        <input type="text" name="truncation_mean" id="truncation_mean" value="4096" required/>
+        <input type="number" name="truncation_mean" id="truncation_mean" min="1" value="4096" required/>
         <button type="submit">generate avatar</button>
     </form>
   </div>
