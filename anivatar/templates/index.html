@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% block body %}
-  <h1>Welcome to Anivatar</h1>
+  <h1>欢迎来到Anivatar</h1>
   <p>
-    This is a generative adversarial network based anime avatar generator,
-    which was trained on Danbooru with Conditional StyleGAN model.
-    Click the "start" button below to start generating an anime avatar.
+    这是一个基于生成对抗网络的动漫头像生成器，使用StyleGAN模型训练。<br/>
+    点击下方的“开始”按钮来生成一张动漫头像。
   </p>
   <form method="get" action="{{ url_for('labels.show') }}">
-    <button type="submit">click to start</button>
+    <button type="submit">开始</button>
   </form>
 {% endblock body %}

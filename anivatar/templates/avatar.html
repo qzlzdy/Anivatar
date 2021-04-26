@@ -2,16 +2,16 @@
 {% block body %}
   <h1>Review generated avatar</h1>
   <p>
-    You can regenerate the avatar if you are not satisfy.
-    Then you can edit the avatar after click the button below.
+    如果你觉得不满意，你可以重新生成一张。<br/>
+    点击“编辑”按钮进入下一步。
   </p>
   <img src="{{ avatar_path }}" width="512" height="512"/><br/><br/>
   <div class="anivatar">
     <form method="post" action="{{ url_for('avatar.generate') }}">
-      <button type="submit">regenerate</button>
+      <button type="submit">重新生成</button>
     </form>
     <form method="get" action="{{ url_for('edit.show') }}">
-      <button type="submit">edit the avatar</button>
+      <button type="submit">编辑</button>
     </form>
   </div>
 {% endblock body %}

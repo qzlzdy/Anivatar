@@ -1,49 +1,49 @@
 {% extends 'base.html' %}
 {% block body %}
-  <h1>Select labels which you want to generate</h1>
-  <p>You can also select nothing and generate a random one</p>
+  <h1>选择你希望生成的标签</h1>
+  <p>如果你什么也不选，程序将为你随机选择</p>
 
   <div class="anivatar">
     <form method="post" action="{{ url_for('avatar.generate') }}">
       <label>Labels</label>
       <div class="row">
         <div class="column">
-          <input type="checkbox" name="labels" value="animal_ears"/>animal_ears<br/>
-          <input type="checkbox" name="labels" value="bangs"/>bangs<br/>
-          <input type="checkbox" name="labels" value="black_hair"/>black_hair<br/>
-          <input type="checkbox" name="labels" value="blonde_hair"/>blonde_hair<br/>
-          <input type="checkbox" name="labels" value="blue_eyes"/>blue_eyes<br/>
-          <input type="checkbox" name="labels" value="blue_hair"/>blue_hair<br/>
+          <input type="checkbox" name="labels" value="animal_ears"/>兽耳<br/>
+          <input type="checkbox" name="labels" value="bangs"/>刘海<br/>
+          <input type="checkbox" name="labels" value="black_hair"/>黑色头发<br/>
+          <input type="checkbox" name="labels" value="blonde_hair"/>金色头发<br/>
+          <input type="checkbox" name="labels" value="blue_eyes"/>蓝色眼睛<br/>
+          <input type="checkbox" name="labels" value="blue_hair"/>蓝色头发<br/>
         </div>
         <div class="column">
-          <input type="checkbox" name="labels" value="blush"/>blush<br/>
-          <input type="checkbox" name="labels" value="brown_eyes"/>brown_eyes<br/>
-          <input type="checkbox" name="labels" value="brown_hair"/>brown_hair<br/>
-          <input type="checkbox" name="labels" value="green_eyes"/>green_eyes<br/>
-          <input type="checkbox" name="labels" value="green_hair"/>green_hair<br/>
-          <input type="checkbox" name="labels" value="hair_ornament"/>hair_ornament<br/>
+          <input type="checkbox" name="labels" value="blush"/>腮红<br/>
+          <input type="checkbox" name="labels" value="brown_eyes"/>棕色眼睛<br/>
+          <input type="checkbox" name="labels" value="brown_hair"/>棕色头发<br/>
+          <input type="checkbox" name="labels" value="green_eyes"/>绿色眼睛<br/>
+          <input type="checkbox" name="labels" value="green_hair"/>绿色头发<br/>
+          <input type="checkbox" name="labels" value="hair_ornament"/>发饰<br/>
         </div>
         <div class="column">
-          <input type="checkbox" name="labels" value="hat"/>hat<br/>
-          <input type="checkbox" name="labels" value="open_mouth"/>open_mouth<br/>
-          <input type="checkbox" name="labels" value="pink_hair"/>pink_hair<br/>
-          <input type="checkbox" name="labels" value="purple_eyes"/>purple_eyes<br/>
-          <input type="checkbox" name="labels" value="purple_hair"/>purple_hair<br/>
-          <input type="checkbox" name="labels" value="red_eyes"/>red_eyes<br/>
+          <input type="checkbox" name="labels" value="hat"/>帽子<br/>
+          <input type="checkbox" name="labels" value="open_mouth"/>张嘴<br/>
+          <input type="checkbox" name="labels" value="pink_hair"/>粉色头发<br/>
+          <input type="checkbox" name="labels" value="purple_eyes"/>紫色眼睛<br/>
+          <input type="checkbox" name="labels" value="purple_hair"/>紫色头发<br/>
+          <input type="checkbox" name="labels" value="red_eyes"/>红色眼睛<br/>
         </div>
         <div class="column">
-          <input type="checkbox" name="labels" value="ribbon"/>ribbon<br/>
-          <input type="checkbox" name="labels" value="silver_hair"/>silver_hair<br/>
-          <input type="checkbox" name="labels" value="smile"/>smile<br/>
-          <input type="checkbox" name="labels" value="twintails"/>twintails<br/>
-          <input type="checkbox" name="labels" value="yellow_eyes"/>yellow_eyes<br/>
+          <input type="checkbox" name="labels" value="ribbon"/>缎带<br/>
+          <input type="checkbox" name="labels" value="silver_hair"/>银色头发<br/>
+          <input type="checkbox" name="labels" value="smile"/>微笑<br/>
+          <input type="checkbox" name="labels" value="twintails"/>双马尾<br/>
+          <input type="checkbox" name="labels" value="yellow_eyes"/>黄色眼睛<br/>
         </div>
       </div>
         <label for="truncation">Truncation</label>
         <input type="number" name="truncation" id="truncation" min="1" value="1" required/>
         <label for="truncation_mean">Truncation Mean</label>
         <input type="number" name="truncation_mean" id="truncation_mean" min="1" value="4096" required/>
-        <button type="submit">generate avatar</button>
+        <button type="submit">生成头像</button>
     </form>
   </div>
 {% endblock body %}

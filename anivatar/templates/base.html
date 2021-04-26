@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta name="application-name" content="Anivatar"/>
-    <meta name="author" content="Qzlzdy"/>
-    <meta name="description" content="Generative Adversarial Network Based Anime Avatar Generator"/>
-    <meta name="keywords" content="GAN, anime, avatar, generate, cartoon, StyleGAN"/>
-    <title>Anivatar - Generative Adversarial Network Based Anime Avatar Generator</title>
+    <meta name="author" content="杨天伦"/>
+    <meta name="description" content="基于生成对抗网络的动漫头像生成器"/>
+    <meta name="keywords" content="GAN, 动漫, 头像, 生成, 动画, StyleGAN"/>
+    <title>Anivatar - 基于生成对抗网络的动漫头像生成器</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
   </head>
@@ -18,10 +18,10 @@
         </div>
         <nav>
           <ul>
-            <li><a class="active" href="/">Home Page</a></li>
-            <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
-            <li><a href="{{ url_for('details') }}">Details</a></li>
-            <li style="float:right"><a href="{{ url_for('about') }}">About</a></li>
+            <li><a class="active" href="/">主页</a></li>
+            <li><a href="{{ url_for('gallery') }}">画廊</a></li>
+            <li><a href="{{ url_for('details') }}">实现细节</a></li>
+            <li style="float:right"><a href="{{ url_for('about') }}">关于我</a></li>
           </ul>
         </nav>
         {% block body %}{% endblock body %}

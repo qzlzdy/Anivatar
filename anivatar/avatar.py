@@ -25,6 +25,7 @@ def generate():
         session['truncation_mean'] = truncation_mean
 
     args = ['python', '{}/fake_generate.py'.format(current_app.config['ROOT_PATH'] + 'core')]
+    # args = ['python', '{}/generate.py'.format(current_app['ROOT_PATH'] + 'core')]
     if labels != '':
         args.append('--labels')
         args.append(labels)

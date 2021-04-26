@@ -3,22 +3,22 @@
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous"
     src="https://connect.facebook.net/zh_CN/sdk.js#xfbml=1&version=v10.0" nonce="Al7DCaEn"></script>
-  <h1>Congratulations!</h1>
-  <p>You have generated an unique anime avatar. You can download the avatar here and share it to your friends.</p>
+  <h1>祝贺</h1>
+  <p>你已经制作了一张独特的动漫头像。你可以下载它，或者将它分享给你的朋友。</p>
   <img src="{{ avatar_path }}" width="512" height="512"/>
   <form method="get" action="{{ url_for('share.download') }}">
-    <button type="submit">download</button>
+    <button type="submit">下载</button>
   </form>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
     class="twitter-share-button"
     data-text="I have generated an anime avatar by Anivatar."
     data-url="localhost:5000"
     data-size="large"
-    data-show-count="true">Share on Twitter</a>
+    data-show-count="true">分享</a>
   <div class="fb-share-button"  data-href="http://localhost:5000" data-layout="button_count" data-size="large">
     <a target="_blank"
       href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A5000%2F&amp;src=sdkpreparse"
-      class="fb-xfbml-parse-ignore">Share on Facebook</a>
+      class="fb-xfbml-parse-ignore">分享</a>
   </div>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 {% endblock body %}

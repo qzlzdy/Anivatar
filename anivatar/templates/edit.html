@@ -1,65 +1,65 @@
 {% extends 'base.html' %}
 {% block body %}
-  <h1>Edit generated avatar</h1>
-  <p>You can edit the avatar here. When you completed, click the button below</p>
+  <h1>编辑头像</h1>
+  <p>你可以在这里编辑头像。当你满意后，你可以点击“继续”。</p>
   <img src="{{ avatar_path }}" width="512" height="512"/><br/><br/>
   <div class="anivatar">
     <form method="post" action="{{ url_for('edit.shift') }}">
-      <label for="shift_x">x</label>
+      <label for="shift_x">横向</label>
       <input type="number" name="shift_x" id="shift_x" min="-256" max="256" required/>
-      <label for="shift_y">y</label>
+      <label for="shift_y">纵向</label>
       <input type="number" name="shift_y" id="shift_y" min="-256" max="256" required/>
-      <button type="submit">shift</button>
+      <button type="submit">平移</button>
     </form>
     <form method="post" action="{{ url_for('edit.rotate') }}">
-      <label for="angle">angle</label>
+      <label for="angle">角度</label>
       <input type="number" name="angle" id="angle" min="-359" max="359" required/>
-      <button type="submit">rotate</button>
+      <button type="submit">旋转</button>
     </form>
     <form method="post" action="{{ url_for('edit.lightness') }}">
-      <label for="lightness">lightness</label>
+      <label for="lightness">亮度</label>
       <input type="number" name="lightness" id="lightness" required/>
-      <button type="submit">adjust lightness</button>
+      <button type="submit">调整亮度</button>
     </form>
     <form method="post" action="{{ url_for('edit.saturation') }}">
-      <label for="saturation">saturation</label>
+      <label for="saturation">饱和度</label>
       <input type="number" name="saturation" id="saturation" required/>
-      <button type="submit">adjust saturation</button>
+      <button type="submit">调整饱和度</button>
     </form>
     <form method="post" action="{{ url_for('edit.contrast') }}">
-      <label for="contrast">contrast</label>
+      <label for="contrast">对比度</label>
       <input type="number" name="contrast" id="contrast" min="0"/>
-      <button type="submit">adjust contrast</button>
+      <button type="submit">调整对比度</button>
     </form>
     <form method="post" action="{{ url_for('edit.filters') }}">
       <div class="row">
         <div class="column">
-          <input type="radio" name="filter" value="null" checked="checked"/>no filter<br/>
-          <input type="radio" name="filter" value="sketch"/>sketch<br/>
+          <input type="radio" name="filter" value="null" checked="checked"/>不使用滤镜<br/>
+          <input type="radio" name="filter" value="sketch"/>素描<br/>
         </div>
         <div class="column">
-          <input type="radio" name="filter" value="nostalgia"/>nostalgia<br/>
-          <input type="radio" name="filter" value="halo"/>halo<br/>
+          <input type="radio" name="filter" value="nostalgia"/>怀旧<br/>
+          <input type="radio" name="filter" value="halo"/>光晕<br/>
         </div>
         <div class="column">
-          <input type="radio" name="filter" value="rising"/>the year of the rising sun<br/>
-          <input type="radio" name="filter" value="relief"/>relief sculpture<br/>
+          <input type="radio" name="filter" value="rising"/>流年<br/>
+          <input type="radio" name="filter" value="relief"/>浮雕<br/>
         </div>
         <div class="column">
-          <input type="radio" name="filter" value="engraving"/>engraving<br/>
-          <input type="radio" name="filter" value="glass"/>gross glass<br/>
+          <input type="radio" name="filter" value="engraving"/>雕刻<br/>
+          <input type="radio" name="filter" value="glass"/>毛玻璃<br/>
         </div>
       </div>
-      <button type="submit">select filter</button>
+      <button type="submit">选择滤镜</button>
     </form>
     <form method="post" action="{{ url_for('edit.vertical') }}">
-      <button type="submit">vertical flip</button>
+      <button type="submit">垂直翻转</button>
     </form>
     <form method="post" action="{{ url_for('edit.horizontal') }}">
-      <button type="submit">horizontal flip</button>
+      <button type="submit">水平翻转</button>
     </form>
     <form method="get" action="{{ url_for('share.summary') }}">
-      <button type="submit">continue</button>
+      <button type="submit">继续</button>
     </form>
   </div>
 {% endblock body %}
