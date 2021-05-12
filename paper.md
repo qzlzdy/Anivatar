@@ -534,28 +534,28 @@ Postman是一个用于API开发的协作平台。它能够简化构建API的步�
 
 网页应用测试的主要目的是综合测试软件系统中可能存在的各种错误，为软件系统的维护，调试，优化提供依据。对本毕业设计的软件系统，主要使用白盒测试技术。
 
-| 客户端代理        | 测试接口         | 请求方法 | 接口类型       | 响应代码 | 响应时间 |
-| ----------------- | ---------------- | -------- | -------------- | -------- | -------- |
-| Postman           | /                | GET      | 非动漫头像相关 | 200      | 31.87ms  |
-| Postman           | /avatar/generate | GET      | 动漫头像生成   | 200      | 44.29s   |
-| Postman           | /edit/shift      | POST     | 动漫头像编辑   | 302      | 102.05ms |
-| Postman           | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.81s    |
-| Postman           | /share/download  | GET      | 动漫头像下载   | 200      | 23.49ms  |
-| Google Chrome     | /                | GET      | 非动漫头像相关 | 200      | 27ms     |
-| Google Chrome     | /avatar/generate | GET      | 动漫头像生成   | 200      | 42.31s   |
-| Google Chrome     | /edit/shift      | POST     | 动漫头像编辑   | 302      | 721ms    |
-| Google Chrome     | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.46s    |
-| Google Chrome     | /share/download  | GET      | 动漫头像下载   | 200      | 374ms    |
-| Firefox           | /                | GET      | 非动漫头像相关 | 200      | 30ms     |
-| Firefox           | /avatar/generate | GET      | 动漫头像生成   | 200      | 41.79s   |
-| Firefox           | /edit/shift      | POST     | 动漫头像编辑   | 302      | 87ms     |
-| Firefox           | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.44s    |
-| Firefox           | /share/download  | GET      | 动漫头像下载   | 200      | 4ms      |
-| Internet Explorer | /                | GET      | 非动漫头像相关 | 200      |          |
-| Internet Explorer | /avatar/generate | GET      | 动漫头像生成   | 200      |          |
-| Internet Explorer | /edit/shift      | POST     | 动漫头像编辑   | 302      |          |
-|                   | /edit/filters    | POST     | 动漫头像编辑   | 302      |          |
-| Internet Explorer | /share/download  | GET      | 动漫头像下载   | 200      |          |
+| 客户端代理    | 测试接口         | 请求方法 | 接口类型       | 响应代码 | 响应时间 |
+| ------------- | ---------------- | -------- | -------------- | -------- | -------- |
+| Postman       | /                | GET      | 非动漫头像相关 | 200      | 31.87ms  |
+| Postman       | /avatar/generate | GET      | 动漫头像生成   | 200      | 44.29s   |
+| Postman       | /edit/shift      | POST     | 动漫头像编辑   | 302      | 102.05ms |
+| Postman       | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.81s    |
+| Postman       | /share/download  | GET      | 动漫头像下载   | 200      | 23.49ms  |
+| Google Chrome | /                | GET      | 非动漫头像相关 | 200      | 27ms     |
+| Google Chrome | /avatar/generate | GET      | 动漫头像生成   | 200      | 42.31s   |
+| Google Chrome | /edit/shift      | POST     | 动漫头像编辑   | 302      | 721ms    |
+| Google Chrome | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.46s    |
+| Google Chrome | /share/download  | GET      | 动漫头像下载   | 200      | 374ms    |
+| Firefox       | /                | GET      | 非动漫头像相关 | 200      | 30ms     |
+| Firefox       | /avatar/generate | GET      | 动漫头像生成   | 200      | 41.79s   |
+| Firefox       | /edit/shift      | POST     | 动漫头像编辑   | 302      | 87ms     |
+| Firefox       | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.44s    |
+| Firefox       | /share/download  | GET      | 动漫头像下载   | 200      | 4ms      |
+| Opera         | /                | GET      | 非动漫头像相关 | 200      | 157ms    |
+| Opera         | /avatar/generate | GET      | 动漫头像生成   | 200      | 63s      |
+| Opera         | /edit/shift      | POST     | 动漫头像编辑   | 302      | 616ms    |
+| Opera         | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.32s    |
+| Opera         | /share/download  | GET      | 动漫头像下载   | 200      | 24ms     |
 
 # 结论
 
