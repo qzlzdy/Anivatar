@@ -1,15 +1,19 @@
 import argparse
 import json
 import random
+import os
 
 import torch
 from torchvision import utils
 from gen_model import Generator
 
+root = os.path.dirname(__file__)
 
-with open('tags.json', 'r') as f:
+with open(f'{root}/../core/tags.json', 'r') as f:
     tags = json.load(f)
-tag_ind = {tag:ind for ind,tag in enumerate(tags)}
+tag_ind = {tag: ind for ind, tag in enumerate(tags)}
+
+
 def one_hot(sample, lb, device):
     labels = [0] * len(tags)
     for tag in lb:
@@ -19,17 +23,20 @@ def one_hot(sample, lb, device):
     labels = labels.repeat(sample, 1)
     return labels.to(device)
 
-with open('sample_labels.json', 'r') as f:
+
+with open(f'{root}/../core/sample_labels.json', 'r') as f:
     sample_labels = json.load(f)
 total_samples = len(sample_labels)
+
+
 def get_random_labels(batch, device):
     labels = []
     for i in range(batch):
         labels.append(sample_labels[random.randint(0, total_samples - 1)])
     return torch.Tensor(labels).float().to(device)
 
-def generate(args, g_ema, device, mean_latent):
 
+def generate(args, g_ema, device, mean_latent):
     with torch.no_grad():
         g_ema.eval()
         for i in range(args.pics):
@@ -47,7 +54,7 @@ def generate(args, g_ema, device, mean_latent):
             rows = args.sample // rows
             utils.save_image(
                 sample,
-                f"../static/portrait/{args.output}.png",
+                f"{root}/../static/portrait/{args.output}.png",
                 nrow=rows,
                 normalize=True,
                 range=(-1, 1),
@@ -64,7 +71,7 @@ if __name__ == '__main__':
     parser.add_argument('--pics', type=int, default=1)
     parser.add_argument('--truncation', type=float, default=1)
     parser.add_argument('--truncation_mean', type=int, default=4096)
-    parser.add_argument('--ckpt', type=str, default='./checkpoint/600000.pt')
+    parser.add_argument('--ckpt', type=str, default=f'{root}/../core/checkpoint/600000.pt')
     parser.add_argument('--channel_multiplier', type=int, default=2)
     parser.add_argument('--labels', type=str, default=None)
     parser.add_argument('--output', type=str, default='example')

@@ -24,8 +24,8 @@ def generate():
         truncation_mean = int(request.form['truncation_mean'])
         session['truncation_mean'] = truncation_mean
 
-    args = ['python', '{}/fake_generate.py'.format(current_app.config['ROOT_PATH'] + 'core')]
-    # args = ['python', '{}/generate.py'.format(current_app['ROOT_PATH'] + 'core')]
+    # args = ['python', '{}/fake_generate.py'.format(current_app.config['ROOT_PATH'] + 'core')]
+    args = ['python', '{}/generate.py'.format(current_app.config['ROOT_PATH'] + 'core')]
     if labels != '':
         args.append('--labels')
         args.append(labels)
@@ -39,6 +39,10 @@ def generate():
     output = [session['session_id'], 0, 0, 0, 0, 0, 10, '', False, False]
     output = hash(json.dumps(output))
     args.append(str(output))
-    subprocess.run(args)
+    subprocess.run(args)    # generate
+    args = ['python', '{}/magnify.py'.format(current_app.config['ROOT_PATH'] + 'core')]
+    args += [str(output), '-o', str(output)]
+    subprocess.run(args)    # 2x
+    subprocess.run(args)    # 4x
     avatar_path = url_for('static', filename='portrait/{}.png'.format(output))
     return render_template('avatar.html', avatar_path=avatar_path)
