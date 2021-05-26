@@ -332,9 +332,13 @@ Postman是一个用于API（Application Programming Interface，应用程序接�
 
 ## 5.1 接口设计
 
+以下[表2](#index_define)至[表24](#share_download_define)表示各接口及相应参数的定义
+
 ### 5.1.1 主模块
 
 #### 5.1.1.1 主页
+
+<center>表2 主页接口定义表</center>
 
 | 请求接口 | 请求方式 |
 | -------- | -------- |
@@ -342,7 +346,9 @@ Postman是一个用于API（Application Programming Interface，应用程序接�
 
 软件主页，用于引导用户进入下一步操作。 
 
-#### 细节页面
+#### 5.1.1.2 细节页面
+
+<center>表3 细节页面接口定义表</center>
 
 | 请求接口 | 请求方式 |
 | -------- | -------- |
@@ -350,7 +356,9 @@ Postman是一个用于API（Application Programming Interface，应用程序接�
 
 用于展示再整个软件系统设计实现过程中使用到的框架，软件，资源等。若用户对该应用感兴趣，也可以参考这些信息自行改进实现。
 
-#### 制作者信息
+#### 5.1.1.3 制作者信息
+
+<center>表4 制作者信息接口定义表</center>
 
 | 请求接口 | 请求方式 |
 | -------- | -------- |
@@ -358,17 +366,21 @@ Postman是一个用于API（Application Programming Interface，应用程序接�
 
 包含本人的一些个人信息，欢迎广大同好与本人一起改进本软件系统。
 
-#### 画廊
+#### 5.1.1.4 画廊
+
+<center>表5 画廊接口定义表</center>
 
 | 请求接口 | 请求方式 |
 | -------- | -------- |
 | /gallery | GET      |
 
-用于展示其它用户在本软件系统生成并编辑的动漫头像.
+用于展示其它用户在本软件系统生成并编辑的动漫头像。
 
-### 标签选择模块
+### 5.1.2 标签选择模块
 
-#### 标签展示
+#### 5.1.2.1 标签展示
+
+<center>表6 标签展示接口定义表</center>
 
 | 请求接口     | 请求方式 |
 | ------------ | -------- |
@@ -376,15 +388,19 @@ Postman是一个用于API（Application Programming Interface，应用程序接�
 
 用于展示动漫头像生成模型中的条件信息。
 
-### 动漫头像生成模块
+### 5.1.3 动漫头像生成模块
 
-#### 生成动漫头像
+#### 5.1.3.1 生成动漫头像
+
+<center>表7 生成动漫头像接口定义表</center>
 
 | 请求接口         | 请求方式 |
 | ---------------- | -------- |
 | /avatar/generate | POST     |
 
-##### 请求体参数定义
+##### 5.1.3.1.1 请求体参数定义
+
+<center>表8 生成动漫头像请求体参数定义表</center>
 
 | 参数名          | 参数类型   | 参数描述                     |
 | --------------- | ---------- | ---------------------------- |
@@ -392,11 +408,13 @@ Postman是一个用于API（Application Programming Interface，应用程序接�
 | truncation      | 浮点型     | 动漫头像生成模型的截断参数   |
 | truncation_mean | 整型       | 动漫头像生成模型平均向量参数 |
 
-接受用户选择的动漫头像属性作为输入，调用动漫头像生成模块，生成动漫头像，并将产生的动漫头像返回给用户。参数truncation用于调整动漫头像生成模型生成的发散程度，取值介于0至1。取值越小，动漫头像生成模型生成的图像越接近平均图像，取值越大，动漫头像生成模型生成的图像更加多样化。参数truncation_mean用于产生过渡空间中间向量取值的平均值，只在参数truncation小于1时使用。
+接受用户选择的动漫头像属性作为输入，调用动漫头像生成模块，生成动漫头像，并将产生的动漫头像返回给用户。参数`truncation`用于调整动漫头像生成模型生成的发散程度，取值介于$ 0 $至$ 1 $。取值越小，动漫头像生成模型生成的图像越接近平均图像，取值越大，动漫头像生成模型生成的图像更加多样化。参数`truncation_mean`用于产生过渡空间中间向量取值的平均值，只在参数`truncation`小于$ 1 $时使用。
 
-### 动漫头像编辑模块
+### 5.1.4 动漫头像编辑模块
 
-#### 动漫头像编辑预览
+#### 5.1.4.1 动漫头像编辑预览
+
+<center>表9 动漫头像编辑预览接口定义表</center>
 
 | 请求接口   | 请求方式 |
 | ---------- | -------- |
@@ -404,96 +422,128 @@ Postman是一个用于API（Application Programming Interface，应用程序接�
 
 返回当前设置下的动漫头像预览。用户能够及时查看提交的参数对动漫头像的修改是否符合预期。
 
-#### 平移动漫头像
+#### 5.1.4.2 平移动漫头像
+
+<center>表10 平移动漫头像接口定义表</center>
 
 | 请求接口    | 请求方式 |
 | ----------- | -------- |
 | /edit/shift | POST     |
 
-##### 请求体参数定义
+##### 5.1.4.2.1 请求体参数定义
+
+<center>表11 平移动漫头像请求体参数定义表</center>
 
 | 参数名  | 参数类型 | 参数描述         |
 | ------- | -------- | ---------------- |
 | shift_x | 整型     | 水平方向平移距离 |
 | shift_y | 整型     | 竖直方向平移距离 |
 
-将动漫头像向某一特定方向平移。若参数shift_x大于零，则将动漫头像中的像素向右平移，若小于零则将动漫头像中的像素向左平移，绝对值的大小表示平移的距离，即跨越的像素个数。同理，若参数shift_y大于零，则将动漫头像中的像素向下平移，若小于零则将动漫头像中的像素向上平移，绝对值的大小表示的意义同参数shift_x。
+将动漫头像向某一特定方向平移。若参数`shift_x`大于零，则将动漫头像中的像素向右平移，若小于零则将动漫头像中的像素向左平移，绝对值的大小表示平移的距离，即跨越的像素个数。同理，若参数`shift_y`大于零，则将动漫头像中的像素向下平移，若小于零则将动漫头像中的像素向上平移，绝对值的大小表示的意义同参数`shift_x`。
 
-#### 旋转动漫头像
+#### 5.1.4.3 旋转动漫头像
+
+<center>表12 旋转动漫头像接口定义表</center>
 
 | 请求接口     | 请求方式 |
 | ------------ | -------- |
 | /edit/rotate | POST     |
 
-##### 请求体参数定义
+##### 5.1.4.3.1 请求体参数定义
+
+<center>表13 旋转动漫头像请求体参数定义表</center>
 
 | 参数名 | 参数类型 | 参数描述   |
 | ------ | -------- | ---------- |
 | angle  | 整型     | 旋转的角度 |
 
-将动漫头像以图像中点为中心旋转，若参数angle大于零，则将动漫头像向顺时针方向旋转，若小于零则将动漫头像向逆时针方向旋转，绝对值的大小表示旋转的角度，参数的单位是角度制。
+将动漫头像以图像中点为中心旋转，若参数`angle`大于零，则将动漫头像向顺时针方向旋转，若小于零则将动漫头像向逆时针方向旋转，绝对值的大小表示旋转的角度，参数的单位是角度制。
 
-#### 修改动漫头像亮度
+#### 5.1.4.4 修改动漫头像亮度
+
+<center>表14 修改动漫头像亮度接口定义表</center>
 
 | 请求接口        | 请求方式 |
 | --------------- | -------- |
 | /edit/lightness | POST     |
 
-##### 请求体参数定义
+##### 5.1.4.4.1 请求体参数定义
+
+<center>表15 修改动漫头像亮度请求体参数定义表</center>
 
 | 参数名    | 参数类型 | 参数描述       |
 | --------- | -------- | -------------- |
 | lightness | 整型     | 动漫头像的亮度 |
 
-将动漫头像的亮度修改为指定数值。计算方法如下所示。
+将动漫头像的亮度修改为指定数值。计算方法如公式$ (5) $所示。
 
-[format]()
+$$
+\begin{equation}x_{new}=\left(1+\frac{lightness}{100}\right)\cdot x_{old}\tag{5}\end{equation}
+$$
 
-#### 修改动漫头像饱和度
+#### 5.1.4.5 修改动漫头像饱和度
+
+<center>表16 修改动漫头像饱和度接口定义表</center>
 
 | 请求接口         | 请求方式 |
 | ---------------- | -------- |
 | /edit/saturation | POST     |
 
-##### 请求体参数定义
+##### 5.1.4.5.1 请求体参数定义
+
+<center>表17 修改动漫头像饱和度请求体参数定义表</center>
 
 | 参数名     | 参数类型 | 参数描述         |
 | ---------- | -------- | ---------------- |
 | saturation | 整型     | 动漫头像的饱和度 |
 
-将动漫头像的饱和度修改为指定数值。计算方法如下所示。
+将动漫头像的饱和度修改为指定数值。计算方法如公式$ (6) $所示。
 
-[format]()
+$$
+\begin{equation}x_{new}=\left(1+\frac{saturation}{100}\right)\cdot x_{old}\tag{6}\end{equation}
+$$
 
-#### 修改动漫头像对比度
+#### 5.1.4.6 修改动漫头像对比度
+
+<center>表18 修改动漫头像对比度接口定义表</center>
 
 | 请求接口       | 请求方式 |
 | -------------- | -------- |
 | /edit/contrast | POST     |
 
-##### 请求体参数定义
+##### 5.1.4.3.1 请求体参数定义
+
+<center>表19 修改动漫头像对比度请求体参数定义表</center>
 
 | 参数名   | 参数类型 | 参数描述         |
 | -------- | -------- | ---------------- |
 | contrast | 整型     | 动漫头像的对比度 |
 
-将动漫头像的对比度修改为指定数值。计算方法如下所示。
+将动漫头像的对比度修改为指定数值。计算方法如公式$ (7) $所示。
 
-[format]()
+$$
+\begin{equation}x_{new}=\min(0.1\cdot contrast\cdot x_{old},255)\tag{7}\end{equation}
+$$
 
-#### 添加动漫头像滤镜
+#### 5.1.4.7 添加动漫头像滤镜
+
+<center>表20 添加动漫头像滤镜接口定义表</center>
 
 | 请求接口      | 请求方式 |
 | ------------- | -------- |
 | /edit/filters | POST     |
 
-##### 请求体参数定义
+##### 5.1.4.7.1 请求体参数定义
+
+<center>表21 添加动漫头像滤镜请求体参数定义表</center>
 
 | 参数名 | 参数类型 | 参数描述 |
 | ------ | -------- | -------- |
 | filter | 字符串   | 滤镜名称 |
 
-为动漫头像添加指定的滤镜。参数filter的取值如下表所示。
+为动漫头像添加指定的滤镜。参数`filter`的取值如下表所示。
+
+<center>表22 参数filter取值表</center>
 
 | filter取值 | 滤镜       |
 | ---------- | ---------- |
@@ -506,9 +556,11 @@ Postman是一个用于API（Application Programming Interface，应用程序接�
 | engraving  | 雕刻       |
 | glass      | 毛玻璃     |
 
-### 动漫头像分享模块
+### 5.1.5 动漫头像分享模块
 
-#### 动漫头像展示
+#### 5.1.5.1 动漫头像展示
+
+<center>表23 动漫头像展示接口定义表</center>
 
 | 请求接口       | 请求方式 |
 | -------------- | -------- |
@@ -516,7 +568,9 @@ Postman是一个用于API（Application Programming Interface，应用程序接�
 
 展示用户修改完成后的动漫头像，并将社交平台分享功能集成在本页面。
 
-#### 动漫头像下载
+#### 5.1.5.2 动漫头像下载
+
+<center>表24 动漫头像下载接口定义表</center>
 
 | 请求接口        | 请求方式 |
 | --------------- | -------- |
@@ -524,7 +578,7 @@ Postman是一个用于API（Application Programming Interface，应用程序接�
 
 将用户修改完成后的动漫头像发送至客户端。
 
-## 数据存储方式设计
+## 5.2 数据存储方式设计
 
 在本毕业设计中有多种类型的数据需要存储，并且各种类型的数据使用场景各不相同，因此需要分析每种场景下的需求，选择合适的存储方案。
 
@@ -534,96 +588,140 @@ Postman是一个用于API（Application Programming Interface，应用程序接�
 
 在用户使用软件系统的过程中，用户经常需要在页面直接跳转。软件系统必须能够区分跳转前后访问本系统的用户是否是同一人。同时，用户可能携带了在之前页面中记录下来的一些信息，需要被服务器使用。因为现在广泛使用的超文本传输协议是无状态的，服务器不能知道用户上一次做了什么，这严重阻碍了交互式网页应用程序的实现。这些数据通常被存储在Cookie当中。Cookie是网页应用为了辨别用户身份而存储在本地终端上经过加密的数据，是一种小型文本文件。内存Cookie由浏览器维护，保存在内存当中，浏览器关闭时Cookie自动清除。
 
-软件系统还提供浏览其他用户生成的动漫头像的功能。要实现这个功能，要求服务器能够记录下先前用户生成的动漫头像。动漫头像在服务器中以便携式网络图形（PNG）格式存储，只需要记录下文件名即可保存动漫头像生成信息。在读取生成信息时，服务器通常要读取大量的动漫头像用于连续展示，而使用数据库存储单一字段的数据表会增加额外的开销，不适合应用与本场景。因此直接使用文本文件记录文件名列表是一个合适的选择。
+软件系统还提供浏览其他用户生成的动漫头像的功能。要实现这个功能，要求服务器能够记录下先前用户生成的动漫头像。动漫头像在服务器中以PNG（Portable Network Graphics，便携式网络图形）格式存储，只需要记录下文件名即可保存动漫头像生成信息。在读取生成信息时，服务器通常要读取大量的动漫头像用于连续展示，而使用数据库存储单一字段的数据表会增加额外的开销，不适合应用与本场景。因此直接使用文本文件记录文件名列表是一个合适的选择。
 
-## 前后端数据交换方式设计
+## 5.3 前后端数据交换方式设计
 
-本毕业设计中主要使用表单和模板引擎交换前后端的数据。表单在网页中主要负责数据采集的功能，能够接受用户的输入，并将其发送至服务器。服务器接受到输入后，即能执行进一步的操作。服务器后台完成用户提交的任务后，通过模板渲染引擎将结构嵌入超文本标记语言（HTML）中，返回给用户。使用表单传输数据无需运行JavaScript脚本，且能够被大多数浏览器支持。
+本毕业设计中主要使用表单和模板引擎交换前后端的数据。表单在网页中主要负责数据采集的功能，能够接受用户的输入，并将其发送至服务器。服务器接受到输入后，即能执行进一步的操作。服务器后台完成用户提交的任务后，通过模板渲染引擎将结构嵌入HTML（Hyper Text Markup Language，超文本标记语言）中，返回给用户。使用表单传输数据无需运行JavaScript脚本，且能够被大多数浏览器支持。
 
-# 人机界面设计与实现
+# 6 人机界面设计与实现
 
-![index.jpg]()
+## 6.1 软件系统主页
 
-上图为软件系统主页，主要包含软件系统的简介，以及帮助用户使用动漫头像生成模型的引导。
+![index](./pics/index.png)
 
-![labels.jpg]()
+<center>图9 软件系统主页</center>
 
-上图为条件选择界面。各条件选项均为复选框类型，可以按照任意组合选择。
+[图9](#index)展示软件系统主页，主要包含软件系统的简介，以及帮助用户使用动漫头像生成模型的引导。其中，页面顶部的导航栏以及底部的开发者信息为通用部分，在其它页面中同样存在。为了使页面内容集中在中部，页面两边各有$ 25\% $的空白区。这两个区域也可以插入广告作为网站收入。
 
-![avatar.jpg]()
+## 6.2 标签选择页面
 
-上图为动漫头像生成界面。用于展示生成的原始动漫。若用户不满意该头像，可以重新生成
+![labels](./pics/labels.png)
 
-![edit.jpg]()
+<center>图10 条件选择页面</center>
 
-上图为动漫头像编辑页面，用户能够在此对动漫头像做修改。
+[图10](labels)为条件选择界面，包括$ 23 $个条件复选框和两个模型参数输入框。每个条件相互独立，可以按照任意组合选择。
 
-![share.jpg]()
+## 6.3 动漫头像生成页面
 
-上图为动漫头像分享页面，包括下载按钮和多个社交平台的分享按钮
+![avatar](./pics/avatar.png)
 
-![gallery.jpg]()
+<center>图11 动漫头像生成页面</center>
 
-上图为画廊。展示所有用户使用本软件系统生成的动漫头像
+[图11](#avatar)展示动漫头像生成页面。该页面设计较简单，起到承上启下的作用。接下来用户将以该动漫头像为基础对其进行编辑。
 
-# 软件测试
+## 6.4 动漫头像编辑页面
+
+![edit_show](./pics/edit-show.png)
+
+<center>图12 动漫头像编辑页面预览部分</center>
+
+![edit_edit](./pics/edit-edit.png)
+
+<center>图13 动漫头像编辑页面操作部分</center>
+
+[图12](#edit_show)至[图13](#edit_edit)为动漫头像编辑页面，包含当前设置下的动漫头像预览，以及可以执行的图像编辑操作。
+
+## 6.5 动漫头像分享页面
+
+![share](./pics/share.png)
+
+<center>图14 动漫头像分享页面</center>
+
+[图14](#share)为动漫头像分享页面，包含用户完成编辑之后的最终动漫头像，并提供下载接口及社交平台分享接口。
+
+# 7 软件测试
 
 本毕业设计主要使用模块化测试技术，分模块对软件系统进行测试。对与本软件系统，主要分为动漫头像生成模型测试和网页应用测试两大部分。在网页应用测试中，测试内容更加细分到各个功能模块。下文分别对两大部分的测试情况做简要介绍。
 
-## 动漫头像生成模型测试
+## 7.1 动漫头像生成模型测试
 
-动漫头像生成模型测试的主要目的是测试动漫头像生成模型是否能够按照用户给定的条件生成相应的动漫头像。
+动漫头像生成模型测试的主要目的是测试动漫头像生成模型是否能够按照用户给定的条件生成相应的动漫头像。以下[图15](#Anivatar_Case_a)至[图18](#Anivatar_Case_d)中，左边$ 24 $幅为本动漫头像生成模型生成图像，右边$ 24 $幅为MakeGirlsMoe模型生成图像。
 
-### 条件组合1
+### 7.1.1 不同条件组合下的模型生成效果
 
-![compare.jpg]()
+**条件组合1**
 
-### 条件组合2
+条件：金色头发、双马尾、腮红、微笑、缎带、红色眼睛。
 
-![compare.jpg]()
+![Anivatar_Case_a](./pics/Anivatar_Case_a.png)![MakeGirlsMoe_Case_a](./pics/MakeGirlsMoe_Case_a.jpg)
 
-### 条件组合3
+<center>图15 条件组合1效果对比图</center>
 
-![compare.jpg]()
+**条件组合2**
 
-### 条件组合4
+条件：银色头发、腮红、微笑、张开嘴巴、蓝色眼睛。
 
-![compare.jpg]()
+![Anivatar_Case_b](./pics/Anivatar_Case_b.png)![MakeGirlsMoe_Case_b](./pics/MakeGirlsMoe_Case_b.jpg)
+
+<center>图16 条件组合2效果对比图</center>
+
+**条件组合3**
+
+条件：蓝色头发、双马尾、张开嘴巴、蓝色眼睛。
+
+![Anivatar_Case_c](./pics/Anivatar_Case_c.png)![MakeGirlsMoe_Case_c](./pics/MakeGirlsMoe_Case_c.jpg)
+
+<center>图17 条件组合3效果对比图</center>
+
+**条件组合4**
+
+条件：金色头发、帽子、红色眼睛。
+
+![Anivatar_Case_d](./pics/Anivatar_Case_d.png)![MakeGirlsMoe_Case_d](./pics/MakeGirlsMoe_Case_d.jpg)
 
 通过以上四组在不同条件组合下动漫头像生成模型和MakeGirlsMoe模型生成动漫头像的对比，可以了解动漫头像生成模型对特定条件下的生成效果是否符合预期。总体来说，本动漫头像生成模型的动漫头像质量与MakeGirlsMoe模型差异不大。可以注意到，本动漫头像生成模型中的背景更加丰富，生成的动漫头像风格也比较多样。但在某些条件下，如条件组合1，MakeGirlsMoe模型的图像生成效果更好一些，产生的坏图更少。
 
-### 随机生成
+**随机生成**
 
-![compare.png]()
+![Anivatar_Random_Tag](./pics/Anivatar_Random_Tag.png)
 
-将不指定条件的动漫头像生成模型的生成效果与TWDNE模型对比，可以发现TWDNE模型的动漫头像生成效果更好，生成的动漫头像质量更加稳定。本动漫头像生成模型使用的网络结构与TWDNE模型大致相同，但仍然产生上述差异的一个主要原因是考虑到训练成本的限制，本动漫头像生成模型对网络规模、训练时间、数据集大小等做了削减，所以无法达到TWDNE模型的训练效果。另一方面，将本动漫头像生成模型在随机条件下动漫头像的生成效果与上文中特定条件下的生成效果做对比，能够发现随机条件下动漫头像生成质量更好，也佐证了上文中关于MakeGirlsMoe模型比TWDNE模型的生成效果不理想的猜想。
+<center>图19 动漫头像生成模型随机效果图</center>
 
-## 网页应用测试
+![TWDNE_Random_Part](./pics/TWDNE_Random_Part.jpg)
 
-网页应用测试的主要目的是综合测试软件系统中可能存在的各种错误，为软件系统的维护，调试，优化提供依据。对本毕业设计的软件系统，主要使用白盒测试技术。白盒测试能够通过揭露隐藏的错误进行代码优化，消除可能存在的缺陷。从源代码层面测试提供了可追溯性，简化了将来软件改动带来的测试改动。
+<center>图20 TWDNE模型随机效果图</center>
 
-| 客户端代理    | 测试接口         | 请求方法 | 接口类型       | 响应代码 | 响应时间 |
-| ------------- | ---------------- | -------- | -------------- | -------- | -------- |
-| Postman       | /                | GET      | 非动漫头像相关 | 200      | 31.87ms  |
-| Postman       | /avatar/generate | GET      | 动漫头像生成   | 200      | 44.29s   |
-| Postman       | /edit/shift      | POST     | 动漫头像编辑   | 302      | 102.05ms |
-| Postman       | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.81s    |
-| Postman       | /share/download  | GET      | 动漫头像下载   | 200      | 23.49ms  |
-| Google Chrome | /                | GET      | 非动漫头像相关 | 200      | 27ms     |
-| Google Chrome | /avatar/generate | GET      | 动漫头像生成   | 200      | 42.31s   |
-| Google Chrome | /edit/shift      | POST     | 动漫头像编辑   | 302      | 721ms    |
-| Google Chrome | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.46s    |
-| Google Chrome | /share/download  | GET      | 动漫头像下载   | 200      | 374ms    |
-| Firefox       | /                | GET      | 非动漫头像相关 | 200      | 30ms     |
-| Firefox       | /avatar/generate | GET      | 动漫头像生成   | 200      | 41.79s   |
-| Firefox       | /edit/shift      | POST     | 动漫头像编辑   | 302      | 87ms     |
-| Firefox       | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.44s    |
-| Firefox       | /share/download  | GET      | 动漫头像下载   | 200      | 4ms      |
-| Opera         | /                | GET      | 非动漫头像相关 | 200      | 157ms    |
-| Opera         | /avatar/generate | GET      | 动漫头像生成   | 200      | 63s      |
-| Opera         | /edit/shift      | POST     | 动漫头像编辑   | 302      | 616ms    |
-| Opera         | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.32s    |
-| Opera         | /share/download  | GET      | 动漫头像下载   | 200      | 24ms     |
+从[图19](#Anivatar_Random_Tag)至[图20](TWDNE_Random_Part)中，不指定条件的动漫头像生成模型的生成效果与TWDNE模型对比，可以发现TWDNE模型的动漫头像生成效果更好，生成的动漫头像质量更加稳定。本动漫头像生成模型使用的网络结构与TWDNE模型大致相同，但仍然产生上述差异的一个主要原因是考虑到训练成本的限制，本动漫头像生成模型对网络规模、训练时间、数据集大小等做了削减，所以无法达到TWDNE模型的训练效果。另一方面，将本动漫头像生成模型在随机条件下动漫头像的生成效果与上文中特定条件下的生成效果做对比，能够发现随机条件下动漫头像生成质量更好，也佐证了上文中关于MakeGirlsMoe模型比TWDNE模型的生成效果不理想的猜想。
+
+## 7.2 网页应用测试
+
+网页应用测试的主要目的是综合测试软件系统中可能存在的各种错误，为软件系统的维护，调试，优化提供依据。对本毕业设计的软件系统，主要使用白盒测试技术。白盒测试能够通过揭露隐藏的错误进行代码优化，消除可能存在的缺陷。从源代码层面测试提供了可追溯性，简化了将来软件改动带来的测试改动。[表25](#web_test)展示了使用不同浏览器访问不同模块的测试情况。
+
+<center>表25 网页应用接口测试表</center>
+
+| 客户端代理    | 测试接口         | 请求方法 | 接口类型       | 响应代码 | 响应时间   |
+| ------------- | ---------------- | -------- | -------------- | -------- | ---------- |
+| Postman       | /                | GET      | 非动漫头像相关 | 200      | 31.87毫秒  |
+| Postman       | /avatar/generate | GET      | 动漫头像生成   | 200      | 44.29秒    |
+| Postman       | /edit/shift      | POST     | 动漫头像编辑   | 302      | 102.05毫秒 |
+| Postman       | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.81秒     |
+| Postman       | /share/download  | GET      | 动漫头像下载   | 200      | 23.49毫秒  |
+| Google Chrome | /                | GET      | 非动漫头像相关 | 200      | 27毫秒     |
+| Google Chrome | /avatar/generate | GET      | 动漫头像生成   | 200      | 42.31秒    |
+| Google Chrome | /edit/shift      | POST     | 动漫头像编辑   | 302      | 721毫秒    |
+| Google Chrome | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.46秒     |
+| Google Chrome | /share/download  | GET      | 动漫头像下载   | 200      | 374毫秒    |
+| Firefox       | /                | GET      | 非动漫头像相关 | 200      | 30毫秒     |
+| Firefox       | /avatar/generate | GET      | 动漫头像生成   | 200      | 41.79秒    |
+| Firefox       | /edit/shift      | POST     | 动漫头像编辑   | 302      | 87毫秒     |
+| Firefox       | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.44秒     |
+| Firefox       | /share/download  | GET      | 动漫头像下载   | 200      | 4毫秒      |
+| Opera         | /                | GET      | 非动漫头像相关 | 200      | 157毫秒    |
+| Opera         | /avatar/generate | GET      | 动漫头像生成   | 200      | 63秒       |
+| Opera         | /edit/shift      | POST     | 动漫头像编辑   | 302      | 616毫秒    |
+| Opera         | /edit/filters    | POST     | 动漫头像编辑   | 302      | 5.32秒     |
+| Opera         | /share/download  | GET      | 动漫头像下载   | 200      | 24毫秒     |
 
 通过分析测试数据，可以了解软件系统的运行情况是否符合预期。总体上，网页响应时间符合软件系统设计预期，但任然存在个别情况下软件系统性能较差，如使用Opera浏览器使用动漫头像生成功能时，响应时间远大于其他浏览器，所有浏览器对动漫头像添加滤镜时响应时间略微超出设计预期。对于同一测试接口，不同浏览器访问的响应时间也存在较大差异。可能的原因包括操作系统调度开销，网络状况波动等不可控因素。在同一浏览器访问的不同测试接口中，响应时间最长的是动漫头像生成接口，其次是添加动漫头像滤镜接口。造成这种现象的主要原因是动漫头像生成模型需要大量时间生成头像，而滤镜效果的添加需要便利动漫头像中的所有像素，增加了时间开销。
 
@@ -643,10 +741,62 @@ Postman是一个用于API（Application Programming Interface，应用程序接�
 
 # 致谢
 
-本毕业论文在程世超老师的悉心指导下完成。从论文的选题，撰写到最后的定稿，程老师都给了我热情的帮助和指导。同时，本毕业论文的完成也离不开各位任课老师认真负责的授业，我能够很好地掌握专业知识并活用在毕业设计之中。在四年的本科学习和生活期间，我始终感受着老师们的无私关怀和精心指导。在此，我向全体教师表示由衷的感谢。
+本毕业论文在~~??????~~老师的悉心指导下完成。从论文的选题，撰写到最后的定稿，~~??~~老师都给了我热情的帮助和指导。同时，本毕业论文的完成也离不开各位任课老师认真负责的授业，我能够很好地掌握专业知识并活用在毕业设计之中。在四年的本科学习和生活期间，我始终感受着老师们的无私关怀和精心指导。在此，我向全体教师表示由衷的感谢。
 
-另外，也要感谢我身边的每个人带给我的帮助。我的家人给我生活上的鼓励和支持，使我能够全心投入到学习与工作中。我的同学以及浙江智臾科技有限公司的同事和领导们给予我技术上的指导，使我能够在工作岗位上的同时顺利完成学业。
+另外，也要感谢我身边的每个人带给我的帮助。我的家人给我生活上的鼓励和支持，使我能够全心投入到学习与工作中。我的同学以及浙江~~????~~科技有限公司的同事和领导们给予我技术上的指导，使我能够在工作岗位上的同时顺利完成学业。
 
 最后，衷心感谢在百忙之中抽出时间评阅论文和参加答辩的各位专家、教授。
 
 # 参考文献
+
+[1] Goodfellow I J, Pouget-Abadie J, Mirza M, et al. Generative adversarial networks[J]. arXiv preprint arXiv:1406.2661, 2014.
+
+[2] Radford A, Metz L, Chintala S. Unsupervised representation learning with deep convolutional generative adversarial networks[J]. arXiv preprint arXiv:1511.06434, 2015.
+
+[3] Arjovsky M, Bottou L. Towards principled methods for training generative adversarial networks[J]. arXiv preprint arXiv:1701.04862, 2017.
+
+[4] Arjovsky M, Chintala S, Bottou L. Wasserstein generative adversarial networks[C]//International conference on machine learning. PMLR, 2017: 214-223.
+
+[5] Gulrajani I, Ahmed F, Arjovsky M, et al. Improved training of wasserstein gans[J]. arXiv preprint arXiv:1704.00028, 2017.
+
+[6] Karras T, Aila T, Laine S, et al. Progressive growing of gans for improved quality, stability, and variation[J]. arXiv preprint arXiv:1710.10196, 2017.
+
+[7] Karras T, Laine S, Aila T. A style-based generator architecture for generative adversarial networks[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2019: 4401-4410.
+
+[8] Karras T, Laine S, Aittala M, et al. Analyzing and improving the image quality of stylegan[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2020: 8110-8119.
+
+[9] Karras T, Aittala M, Hellsten J, et al. Training generative adversarial networks with limited data[J]. arXiv preprint arXiv:2006.06676, 2020.
+
+[10] Mirza M, Osindero S. Conditional generative adversarial nets[J]. arXiv preprint arXiv:1411.1784, 2014.
+
+[11] Odena A, Olah C, Shlens J. Conditional image synthesis with auxiliary classifier gans[C]//International conference on machine learning. PMLR, 2017: 2642-2651.
+
+[12] 张扬, 马小虎. 基于改进生成对抗网络的动漫人物头像生成算法[J]. 计算机科学, 48(1): 182-189.
+
+[13] Jin Y, Zhang J, Li M, et al. Towards the automatic anime characters creation with generative adversarial networks[J]. arXiv preprint arXiv:1708.05509, 2017.
+
+[14] Oeldorf C, Spanakis G. LoGANv2: Conditional style-based logo generation with generative adversarial networks[C]//2019 18th IEEE International Conference On Machine Learning And Applications (ICMLA). IEEE, 2019: 462-468.
+
+[15] Isola P, Zhu J Y, Zhou T, et al. Image-to-image translation with conditional adversarial networks[C]//Proceedings of the IEEE conference on computer vision and pattern recognition. 2017: 1125-1134.
+
+[16] Zhu J Y, Park T, Isola P, et al. Unpaired image-to-image translation using cycle-consistent adversarial networks[C]//Proceedings of the IEEE international conference on computer vision. 2017: 2223-2232.
+
+[17] Chen Y, Lai Y K, Liu Y J. Cartoongan: Generative adversarial networks for photo cartoonization[C]//Proceedings of the IEEE conference on computer vision and pattern recognition. 2018: 9465-9474.
+
+[18] Choi Y, Choi M, Kim M, et al. Stargan: Unified generative adversarial networks for multi-domain image-to-image translation[C]//Proceedings of the IEEE conference on computer vision and pattern recognition. 2018: 8789-8797.
+
+[19] Kim J, Kim M, Kang H, et al. U-GAT-IT: unsupervised generative attentional networks with adaptive layer-instance normalization for image-to-image translation[J]. arXiv preprint arXiv:1907.10830, 2019.
+
+[20] Nizan O, Tal A. Breaking the cycle-colleagues are all you need[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2020: 7860-7869.
+
+[21] Kodali N, Abernethy J, Hays J, et al. On convergence and stability of gans[J]. arXiv preprint arXiv:1705.07215, 2017.
+
+[22] Karnewar A, Wang O. Msg-gan: Multi-scale gradients for generative adversarial networks[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2020: 7799-7808.
+
+[23] Brock A, Donahue J, Simonyan K. Large scale GAN training for high fidelity natural image synthesis[J]. arXiv preprint arXiv:1809.11096, 2018.
+
+[24] Zhang H, Goodfellow I, Metaxas D, et al. Self-attention generative adversarial networks[C]//International conference on machine learning. PMLR, 2019: 7354-7363.
+
+[25] Gan-qp J S. A novel gan framework without gradient vanishing and lipschitz constraint[J]. arXiv preprint arXiv:1811.07296, 2018.
+
+[26] Ahn N, Kang B, Sohn K A. Fast, accurate, and lightweight super-resolution with cascading residual network[C]//Proceedings of the European Conference on Computer Vision (ECCV). 2018: 252-268.
