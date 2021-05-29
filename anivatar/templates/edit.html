@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% block navigation %}
+  <li><a class="active" href="/">主页</a></li>
+  <li><a href="{{ url_for('gallery') }}">画廊</a></li>
+  <li><a href="{{ url_for('details') }}">实现细节</a></li>
+  <li style="float:right"><a href="{{ url_for('about') }}">关于我</a></li>
+{% endblock navigation %}
 {% block body %}
   <h1>编辑头像</h1>
   <p>你可以在这里编辑头像。当你满意后，你可以点击“继续”。</p>
