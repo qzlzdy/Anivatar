@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% block navigation %}
+  <li><a href="/">主页</a></li>
+  <li><a href="{{ url_for('gallery') }}">画廊</a></li>
+  <li><a href="{{ url_for('details') }}">实现细节</a></li>
+  <li style="float:right"><a class="active" href="{{ url_for('about') }}">关于我</a></li>
+{% endblock navigation %}
 {% block body %}
   <h2>作者: 杨天伦<a href="https://twitter.com/qzlzdy_yang?ref_src=twsrc%5Etfw"
     class="twitter-follow-button"

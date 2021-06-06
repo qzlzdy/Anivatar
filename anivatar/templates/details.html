@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% block navigation %}
+  <li><a href="/">主页</a></li>
+  <li><a href="{{ url_for('gallery') }}">画廊</a></li>
+  <li><a class="active" href="{{ url_for('details') }}">实现细节</a></li>
+  <li style="float:right"><a href="{{ url_for('about') }}">关于我</a></li>
+{% endblock navigation %}
 {% block body %}
   <h2>数据集: <a href="https://www.gwern.net/Danbooru2020">Danbooru2020</a></h2>
   <h2>标注器: <a href="https://github.com/RF5/danbooru-pretrained">RF5/danbooru-pretrained</a></h2>

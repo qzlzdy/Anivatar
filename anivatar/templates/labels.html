@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% block navigation %}
+  <li><a class="active" href="/">主页</a></li>
+  <li><a href="{{ url_for('gallery') }}">画廊</a></li>
+  <li><a href="{{ url_for('details') }}">实现细节</a></li>
+  <li style="float:right"><a href="{{ url_for('about') }}">关于我</a></li>
+{% endblock navigation %}
 {% block body %}
   <h1>选择你希望生成的标签</h1>
   <p>如果你什么也不选，程序将为你随机选择</p>
@@ -40,7 +46,7 @@
         </div>
       </div>
         <label for="truncation">Truncation</label>
-        <input type="number" name="truncation" id="truncation" min="1" value="1" required/>
+        <input type="range" name="truncation" id="truncation" min="0" max="1" value="1" step="0.05" required/><br/>
         <label for="truncation_mean">Truncation Mean</label>
         <input type="number" name="truncation_mean" id="truncation_mean" min="1" value="4096" required/>
         <button type="submit">生成头像</button>

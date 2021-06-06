@@ -18,10 +18,7 @@
         </div>
         <nav>
           <ul>
-            <li><a class="active" href="/">主页</a></li>
-            <li><a href="{{ url_for('gallery') }}">画廊</a></li>
-            <li><a href="{{ url_for('details') }}">实现细节</a></li>
-            <li style="float:right"><a href="{{ url_for('about') }}">关于我</a></li>
+            {% block navigation %}{% endblock navigation %}
           </ul>
         </nav>
         {% block body %}{% endblock body %}
